@@ -32,7 +32,7 @@ public class SecurityConfig {
                     // Public endpoints
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/error").permitAll()
-                    .requestMatchers("/api/health").permitAll()
+                    .requestMatchers("/api/health", "/api/health/**").permitAll()
                     .requestMatchers("/chat/**").permitAll()
                     .requestMatchers("/api/chat/**").authenticated()
                     .requestMatchers("/api/users/login").permitAll()

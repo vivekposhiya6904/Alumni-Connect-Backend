@@ -19,7 +19,7 @@ import lombok.Setter;
 @CompoundIndexes({
     @CompoundIndex(name = "conversation_time_idx", def = "{'conversationId': 1, 'timestamp': -1}"),
     @CompoundIndex(name = "sender_receiver_idx", def = "{'sender': 1, 'receiver': 1}"),
-    @CompoundIndex(name = "sender_client_msg_unique_idx", def = "{'sender': 1, 'clientMessageId': 1}", unique = true, sparse = true)
+    @CompoundIndex(name = "sender_client_msg_unique_idx", def = "{'sender': 1, 'clientMessageId': 1}", unique = true, partialFilter = "{'clientMessageId': {'$type': 'string'}}")
 })
 @Getter
 @Setter
