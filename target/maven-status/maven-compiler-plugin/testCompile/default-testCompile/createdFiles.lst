@@ -1,0 +1,15 @@
+com\alumni\management\chat\ChatHistoryServiceTest.class
+com\alumni\management\user\UserServiceAuthTest.class
+com\alumni\management\jobpost\JobServiceTest.class
+com\alumni\management\admin\AdminServiceTest.class
+com\alumni\management\AlumniManagementApplicationTests.class
+com\alumni\management\security\JwtSecurityTest.class
+com\alumni\management\student\StudentProfileServiceTest.class
+com\alumni\management\verification\VerificationServiceTest.class
+com\alumni\management\security\FileUploadSecurityUtilTest.class
+com\alumni\management\chat\StompAuthenticationTest.class
+com\alumni\management\config\ProductionConfigVerificationTest.class
+com\alumni\management\verification\VerificationControllerTest.class
+com\alumni\management\config\HealthControllerTest.class
+com\alumni\management\jobpost\JobControllerTest.class
+com\alumni\management\chat\ChatSecurityAndPresenceTest.class

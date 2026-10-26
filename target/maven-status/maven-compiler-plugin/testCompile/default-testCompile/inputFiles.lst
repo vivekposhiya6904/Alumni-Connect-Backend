@@ -1,0 +1,15 @@
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\admin\AdminServiceTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\AlumniManagementApplicationTests.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\chat\ChatHistoryServiceTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\chat\ChatSecurityAndPresenceTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\chat\StompAuthenticationTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\config\HealthControllerTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\config\ProductionConfigVerificationTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\jobpost\JobControllerTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\jobpost\JobServiceTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\security\FileUploadSecurityUtilTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\security\JwtSecurityTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\student\StudentProfileServiceTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\user\UserServiceAuthTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\verification\VerificationControllerTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\verification\VerificationServiceTest.java
