@@ -5,6 +5,7 @@ E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\chat\ChatSecurit
 E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\chat\StompAuthenticationTest.java
 E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\config\HealthControllerTest.java
 E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\config\ProductionConfigVerificationTest.java
+E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\email\EmailServiceTest.java
 E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\jobpost\JobControllerTest.java
 E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\jobpost\JobServiceTest.java
 E:\Documents\Alumni_Backend\src\test\java\com\alumni\management\security\FileUploadSecurityUtilTest.java

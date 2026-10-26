@@ -35,7 +35,7 @@ jwt.secret=${JWT_SECRET:<generate-a-strong-secret-key-at-least-256-bits>}
 # Default: 30 days in milliseconds (2592000000)
 jwt.expiration.ms=${JWT_EXPIRATION_MS:2592000000}
 
-# Mail Configuration (OTP & Verification)
+# Mail Configuration (Legacy SMTP deprecated on Render due to port 587 block)
 spring.mail.host=${SPRING_MAIL_HOST:smtp.gmail.com}
 spring.mail.port=${SPRING_MAIL_PORT:587}
 spring.mail.username=${SPRING_MAIL_USERNAME:<your-smtp-email>}
@@ -45,6 +45,10 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 spring.mail.properties.mail.smtp.connectiontimeout=5000
 spring.mail.properties.mail.smtp.timeout=5000
 spring.mail.properties.mail.smtp.writetimeout=5000
+
+# Resend HTTPS Email Delivery Configuration
+resend.api.key=${RESEND_API_KEY:<your-resend-api-key>}
+resend.from.email=${RESEND_FROM_EMAIL:<sender-permitted-by-resend>}
 
 # File Upload Settings
 spring.servlet.multipart.max-file-size=5MB

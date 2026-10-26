@@ -64,7 +64,6 @@ com\alumni\management\user\dto\UserResponseDto.class
 com\alumni\management\verification\dto\VerifyOtpRequestDto.class
 com\alumni\management\verification\dto\SendOtpRequestDto$SendOtpRequestDtoBuilder.class
 com\alumni\management\chat\entity\MessageType.class
-com\alumni\management\config\DotenvEnvironmentPostProcessor.class
 com\alumni\management\alumni\service\AlumniProfileService.class
 com\alumni\management\email\service\EmailService.class
 com\alumni\management\alumni\repository\AlumniProfileRepository.class
