@@ -151,7 +151,7 @@ class UserServiceAuthTest {
         assertFalse(result.isVerified(), "New user must be unverified initially");
         assertTrue(passwordEncoder.matches(rawPassword, result.getPassword()), "Password must be BCrypt encoded");
 
-        verify(verificationService, times(1)).sendVerificationOtp(testEmail, VerificationPurpose.ACCOUNT_REGISTRATION);
+        verify(verificationService, never()).sendVerificationOtp(anyString(), any());
     }
 
     @Test
@@ -199,7 +199,7 @@ class UserServiceAuthTest {
         assertFalse(result.isVerified());
         assertTrue(passwordEncoder.matches("NewSecretPassword!", result.getPassword()));
 
-        verify(verificationService, times(1)).sendVerificationOtp(testEmail, VerificationPurpose.ACCOUNT_REGISTRATION);
+        verify(verificationService, never()).sendVerificationOtp(anyString(), any());
     }
 
     @Test

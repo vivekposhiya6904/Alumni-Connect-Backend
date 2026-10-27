@@ -58,7 +58,6 @@ public class UserService {
 			existingUser.setVerified(false);
 			User saved = userRepository.save(existingUser);
 
-			verificationService.sendVerificationOtp(normalizedEmail, com.alumni.management.verification.enums.VerificationPurpose.ACCOUNT_REGISTRATION);
 			return saved;
 		}
 
@@ -74,7 +73,6 @@ public class UserService {
 
 		User saved = userRepository.save(user);
 
-		verificationService.sendVerificationOtp(normalizedEmail, com.alumni.management.verification.enums.VerificationPurpose.ACCOUNT_REGISTRATION);
 		return saved;
 	}
 
