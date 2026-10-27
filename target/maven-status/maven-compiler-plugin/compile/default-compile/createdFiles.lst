@@ -1,4 +1,5 @@
 com\alumni\management\notification\entity\Notification.class
+com\alumni\management\verification\service\FirebaseTokenService.class
 com\alumni\management\notification\controller\NotificationController.class
 com\alumni\management\event\repository\EventRepository.class
 com\alumni\management\chat\entity\Conversation$ParticipantUnread.class
@@ -24,6 +25,7 @@ com\alumni\management\profileview\entity\ProfileView.class
 com\alumni\management\student\dto\StudentProfileDto.class
 com\alumni\management\chat\dto\PresenceEvent.class
 com\alumni\management\verification\dto\VerificationResponseDto.class
+com\alumni\management\verification\dto\FirebaseTokenClaims$FirebaseTokenClaimsBuilder.class
 com\alumni\management\post\repository\PostRepository.class
 com\alumni\management\user\controller\UserController.class
 com\alumni\management\verification\exception\InvalidOtpException.class
@@ -47,6 +49,7 @@ com\alumni\management\event\entity\Event.class
 com\alumni\management\chat\service\ChatService.class
 com\alumni\management\faculty\controller\FacultyController.class
 com\alumni\management\chat\config\WebSocketConfig.class
+com\alumni\management\verification\dto\FirebaseVerificationRequestDto$FirebaseVerificationRequestDtoBuilder.class
 com\alumni\management\user\dto\LoginResponseDto.class
 com\alumni\management\verification\exception\EmailDeliveryException.class
 com\alumni\management\student\entity\StudentProfile.class
@@ -83,8 +86,10 @@ com\alumni\management\profileview\repository\ProfileViewRepository.class
 com\alumni\management\jobpost\controller\JobController.class
 com\alumni\management\user\dto\ResetPasswordRequestDto.class
 com\alumni\management\post\entity\Post.class
+com\alumni\management\verification\dto\FirebaseVerificationRequestDto.class
 com\alumni\management\verification\exception\ResendCooldownException.class
 com\alumni\management\chat\dto\ChatSendRequest.class
+com\alumni\management\verification\dto\FirebaseTokenClaims.class
 com\alumni\management\post\dto\PostDto.class
 com\alumni\management\config\HealthController.class
 com\alumni\management\verification\dto\VerifyOtpRequestDto$VerifyOtpRequestDtoBuilder.class

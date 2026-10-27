@@ -60,6 +60,11 @@ public class GlobalExceptionHandler {
 		return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, "Service Unavailable", ex.getMessage());
 	}
 
+	@ExceptionHandler(SecurityException.class)
+	public ResponseEntity<Map<String, Object>> handleSecurityException(SecurityException ex) {
+		return buildResponse(HttpStatus.FORBIDDEN, "Forbidden", ex.getMessage());
+	}
+
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex) {
 		String errorMessage = ex.getBindingResult().getFieldErrors().stream()

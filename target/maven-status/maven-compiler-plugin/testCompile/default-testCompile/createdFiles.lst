@@ -9,6 +9,7 @@ com\alumni\management\student\StudentProfileServiceTest.class
 com\alumni\management\verification\VerificationServiceTest.class
 com\alumni\management\security\FileUploadSecurityUtilTest.class
 com\alumni\management\chat\StompAuthenticationTest.class
+com\alumni\management\verification\FirebaseVerificationTest.class
 com\alumni\management\verification\VerificationControllerTest.class
 com\alumni\management\config\HealthControllerTest.class
 com\alumni\management\email\EmailServiceTest$StringSubscriber.class

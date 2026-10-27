@@ -1,5 +1,6 @@
 package com.alumni.management.verification.controller;
 
+import com.alumni.management.verification.dto.FirebaseVerificationRequestDto;
 import com.alumni.management.verification.dto.SendOtpRequestDto;
 import com.alumni.management.verification.dto.VerificationResponseDto;
 import com.alumni.management.verification.dto.VerifyOtpRequestDto;
@@ -16,6 +17,17 @@ public class VerificationController {
 
     public VerificationController(VerificationService verificationService) {
         this.verificationService = verificationService;
+    }
+
+    @PostMapping("/firebase")
+    public ResponseEntity<VerificationResponseDto> verifyFirebase(
+            @Valid @RequestBody FirebaseVerificationRequestDto request
+    ) {
+        VerificationResponseDto response = verificationService.verifyFirebaseEmail(
+                request.getEmail(),
+                request.getIdToken()
+        );
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/send")

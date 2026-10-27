@@ -33,6 +33,9 @@ public class User {
 	private String universityNumber;
 	
 	private boolean verified=false;
+	
+	@Column(name = "firebase_uid", unique = true)
+	private String firebaseUid;
 
 //	manyToOne is like forign key
 	@ManyToOne
@@ -109,6 +112,14 @@ public class User {
 
 	public void setVerified(boolean verified) {
 		this.verified = verified;
+	}
+
+	public String getFirebaseUid() {
+		return firebaseUid;
+	}
+
+	public void setFirebaseUid(String firebaseUid) {
+		this.firebaseUid = firebaseUid;
 	}
 	
 

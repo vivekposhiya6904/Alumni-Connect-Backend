@@ -1,8 +1,10 @@
 package com.alumni.management.verification.service;
 
 import com.alumni.management.email.service.EmailService;
+import com.alumni.management.exception.ResourceNotFoundException;
 import com.alumni.management.user.entity.User;
 import com.alumni.management.user.repository.UserRepository;
+import com.alumni.management.verification.dto.FirebaseTokenClaims;
 import com.alumni.management.verification.dto.VerificationResponseDto;
 import com.alumni.management.verification.entity.EmailVerification;
 import com.alumni.management.verification.enums.VerificationPurpose;
@@ -10,6 +12,7 @@ import com.alumni.management.verification.exception.*;
 import com.alumni.management.verification.repository.EmailVerificationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +35,23 @@ public class VerificationService {
     private final UserRepository userRepository;
     private final EmailService emailService;
     private final PasswordEncoder passwordEncoder;
+    private final FirebaseTokenService firebaseTokenService;
     private final SecureRandom secureRandom = new SecureRandom();
+
+    @Autowired
+    public VerificationService(
+            EmailVerificationRepository verificationRepository,
+            UserRepository userRepository,
+            EmailService emailService,
+            PasswordEncoder passwordEncoder,
+            @Autowired(required = false) FirebaseTokenService firebaseTokenService
+    ) {
+        this.verificationRepository = verificationRepository;
+        this.userRepository = userRepository;
+        this.emailService = emailService;
+        this.passwordEncoder = passwordEncoder;
+        this.firebaseTokenService = firebaseTokenService;
+    }
 
     public VerificationService(
             EmailVerificationRepository verificationRepository,
@@ -40,10 +59,58 @@ public class VerificationService {
             EmailService emailService,
             PasswordEncoder passwordEncoder
     ) {
-        this.verificationRepository = verificationRepository;
-        this.userRepository = userRepository;
-        this.emailService = emailService;
-        this.passwordEncoder = passwordEncoder;
+        this(verificationRepository, userRepository, emailService, passwordEncoder, null);
+    }
+
+    /**
+     * Server-side verification of Firebase email verification link.
+     * Validates ID token signature, issuer, audience, email_verified claim,
+     * matches against registered user, and associates Firebase UID.
+     */
+    @Transactional
+    public VerificationResponseDto verifyFirebaseEmail(String rawEmail, String idToken) {
+        String email = normalizeEmail(rawEmail);
+        if (email.isEmpty()) {
+            throw new IllegalArgumentException("Email is required for verification.");
+        }
+
+        if (firebaseTokenService == null) {
+            throw new IllegalStateException("Firebase token verification service is not configured.");
+        }
+
+        FirebaseTokenClaims claims = firebaseTokenService.verifyFirebaseIdToken(idToken);
+
+        if (!claims.isEmailVerified()) {
+            throw new SecurityException("Email has not been verified yet in Firebase. Please click the verification link sent to your email.");
+        }
+
+        String tokenEmail = normalizeEmail(claims.getEmail());
+        if (!email.equalsIgnoreCase(tokenEmail)) {
+            throw new SecurityException("Verified Firebase email (" + tokenEmail + ") does not match registered application email (" + email + ").");
+        }
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
+
+        // Ensure this Firebase UID is not linked to a different existing user
+        if (claims.getUid() != null && !claims.getUid().isEmpty()) {
+            Optional<User> existingUserWithUid = userRepository.findByFirebaseUid(claims.getUid());
+            if (existingUserWithUid.isPresent() && !existingUserWithUid.get().getId().equals(user.getId())) {
+                throw new SecurityException("This Firebase identity is already associated with another account.");
+            }
+            user.setFirebaseUid(claims.getUid());
+        }
+
+        user.setVerified(true);
+        userRepository.save(user);
+
+        logger.info("User {} successfully verified email and linked Firebase UID: {}", email, claims.getUid());
+
+        return VerificationResponseDto.builder()
+                .success(true)
+                .message("Email verified successfully via Firebase.")
+                .email(email)
+                .build();
     }
 
     /**
@@ -200,7 +267,7 @@ public class VerificationService {
         return String.format("%06d", code);
     }
 
-    private String normalizeEmail(String email) {
+    public String normalizeEmail(String email) {
         if (email == null) {
             return "";
         }

@@ -218,19 +218,13 @@ public class AdminService {
 
 		User user = new User();
 		user.setName(request.getName());
-		user.setEmail(request.getEmail());
+		user.setEmail(request.getEmail() != null ? request.getEmail().trim().toLowerCase(java.util.Locale.ROOT) : "");
+		user.setVerified(false);
 		user.setPassword(passwordEncoder.encode(request.getPassword()));
 		user.setRole(role);
 
 		User savedUser = userRepository.save(user);
 
-		if (verificationService != null) {
-			try {
-				verificationService.sendVerificationOtp(savedUser.getEmail(), com.alumni.management.verification.enums.VerificationPurpose.ACCOUNT_ACTIVATION);
-			} catch (Exception e) {
-				// Don't fail admin user creation if email service fails or is unconfigured
-			}
-		}
 
 		String dept = request.getDepartment() != null && !request.getDepartment().isEmpty() ? request.getDepartment() : "MCA";
 

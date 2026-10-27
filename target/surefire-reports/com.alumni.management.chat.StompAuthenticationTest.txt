@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.alumni.management.chat.StompAuthenticationTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.226 s -- in com.alumni.management.chat.StompAuthenticationTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.217 s -- in com.alumni.management.chat.StompAuthenticationTest
